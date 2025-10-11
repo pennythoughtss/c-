@@ -1,0 +1,14 @@
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\bin\Debug\net8.0\Journal.exe
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\bin\Debug\net8.0\Journal.deps.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\bin\Debug\net8.0\Journal.runtimeconfig.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\bin\Debug\net8.0\Journal.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\bin\Debug\net8.0\Journal.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.AssemblyInfoInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.AssemblyInfo.cs
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.csproj.CoreCompileInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\refint\Journal.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.genruntimeconfig.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\ref\Journal.dll
