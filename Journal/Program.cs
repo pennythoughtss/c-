@@ -142,6 +142,8 @@ class Program
                         {
                             Console.WriteLine("Name of the file (add .txt): ");
                             source = Console.ReadLine();
+                            journalEntries.Clear();
+                            Journal.loadData();
                         }
                         break;
                     case 5:
