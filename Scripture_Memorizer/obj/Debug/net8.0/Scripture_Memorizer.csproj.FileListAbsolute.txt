@@ -1,0 +1,15 @@
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\bin\Debug\net8.0\Scripture_Memorizer.exe
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\bin\Debug\net8.0\Scripture_Memorizer.deps.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\bin\Debug\net8.0\Scripture_Memorizer.runtimeconfig.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\bin\Debug\net8.0\Scripture_Memorizer.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\bin\Debug\net8.0\Scripture_Memorizer.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.AssemblyInfoInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.AssemblyInfo.cs
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.csproj.CoreCompileInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.sourcelink.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\refint\Scripture_Memorizer.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\Scripture_Memorizer.genruntimeconfig.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Scripture_Memorizer\obj\Debug\net8.0\ref\Scripture_Memorizer.dll
