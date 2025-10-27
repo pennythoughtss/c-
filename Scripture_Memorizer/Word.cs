@@ -6,11 +6,11 @@ namespace Memorizer
         string _word = word;
         bool _hidden = hidden;
 
-        void Hide()
+        public void Hide()
         {
             _hidden = true;
         }
-        void Show()
+        public void Show()
         {
             _hidden = false;
         }
@@ -31,7 +31,7 @@ namespace Memorizer
             Console.Write(" ");
         }
 
-        bool IsHidden()
+        public bool IsHidden()
         {
             return _hidden;
         }
