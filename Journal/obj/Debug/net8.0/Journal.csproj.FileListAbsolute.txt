@@ -12,3 +12,4 @@ C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\refint\Journ
 C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.pdb
 C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.genruntimeconfig.cache
 C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\ref\Journal.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Journal\obj\Debug\net8.0\Journal.sourcelink.json

@@ -1,0 +1,15 @@
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\bin\Debug\net8.0\Relax_activity.exe
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\bin\Debug\net8.0\Relax_activity.deps.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\bin\Debug\net8.0\Relax_activity.runtimeconfig.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\bin\Debug\net8.0\Relax_activity.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\bin\Debug\net8.0\Relax_activity.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.AssemblyInfoInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.AssemblyInfo.cs
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.csproj.CoreCompileInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.sourcelink.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\refint\Relax_activity.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\Relax_activity.genruntimeconfig.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Relax_activity\obj\Debug\net8.0\ref\Relax_activity.dll
