@@ -7,9 +7,9 @@ namespace Activity
         public void DisplayIntro()
         {
             string title = "Breathing Activity";
-            string description = "You will reflect while you take long deep breaths";
+            string description = "This activity will help you relax by walking your through breathing in and out slowly. \nClear your mind and focus on your breathing";
             Intro(title, description);
-            num = Int32.Parse(Console.ReadLine());
+            num = int.Parse(Console.ReadLine());
             Intro2();
         }
 
@@ -19,7 +19,7 @@ namespace Activity
             Console.Clear();
             Console.WriteLine("Think deeply while you breathe: ");
             int duration = 1000 * num;
-            Console.WriteLine("\n");
+            Console.WriteLine("\n\n");
             int i = 0;
 
             while (duration > 0)
@@ -38,8 +38,8 @@ namespace Activity
 
 
             }
-
             Outro();
+            
 
         }
 

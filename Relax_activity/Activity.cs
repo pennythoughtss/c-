@@ -17,8 +17,8 @@ namespace Activity
             Console.WriteLine($"Prepare to begin");
 
             animation.Load2();
-        } 
-
+        }
+    
         protected void Outro()
         {
             Console.Clear();

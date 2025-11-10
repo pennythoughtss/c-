@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Relax_activity")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42fec0acd3c27d4b685d1c53d06631e4dce04d47")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bb1386fc3485404fa82c1747197c737e4b8f80d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Relax_activity")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Relax_activity")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
