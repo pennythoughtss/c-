@@ -9,7 +9,7 @@ namespace Activity
             Console.Clear();
             Console.WriteLine($"Welcome to the {title}. \n{description}.");
             Thread.Sleep(750);
-            Console.WriteLine("How long (in seconds) would you like this activity to be? :");
+            Console.WriteLine("\n-----\nHow long (in seconds) would you like this activity to be? :");
         }
         protected void Intro2()
         {

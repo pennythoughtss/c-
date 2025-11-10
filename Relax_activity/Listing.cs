@@ -48,7 +48,11 @@ namespace Activity
             System.Timers.Timer timer = new System.Timers.Timer(duration);
             timer.Elapsed += async (sender, e) => HandleTimer();
             timer.Start();
+            
+            // Guess I'm using a timer now instead of just guessing using thread delays,
+            // shut up, I'm not inconsistant, YOU'RE inconsistant
 
+            Console.CursorVisible = true;
             while (timeIsUp == false)
             {
                 Console.Write("- ");
@@ -57,6 +61,7 @@ namespace Activity
             }
             timer.Dispose();
             
+            Console.CursorVisible = false;
             Console.Clear();
             Console.WriteLine($"Your list for \"{prompt[rand]}\": ");
             foreach (string obj in listedObj)
