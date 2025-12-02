@@ -1,0 +1,15 @@
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\bin\Debug\net8.0\Five_Afternoons_at_Fredrick.exe
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\bin\Debug\net8.0\Five_Afternoons_at_Fredrick.deps.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\bin\Debug\net8.0\Five_Afternoons_at_Fredrick.runtimeconfig.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\bin\Debug\net8.0\Five_Afternoons_at_Fredrick.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\bin\Debug\net8.0\Five_Afternoons_at_Fredrick.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.AssemblyInfoInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.AssemblyInfo.cs
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.csproj.CoreCompileInputs.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.sourcelink.json
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\refint\Five_Afternoons_at_Fredrick.dll
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.pdb
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\Five_Afternoons_at_Fredrick.genruntimeconfig.cache
+C:\Users\areik\OneDrive\Desktop\Scripts\c#\Five_Afternoons_at_Fredrick\obj\Debug\net8.0\ref\Five_Afternoons_at_Fredrick.dll

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Five_Afternoons_at_Fredrick/1.0.0": {
+        "runtime": {
+          "Five_Afternoons_at_Fredrick.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Five_Afternoons_at_Fredrick/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
