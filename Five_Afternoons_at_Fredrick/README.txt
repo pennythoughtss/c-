@@ -10,15 +10,12 @@ press C twice to open the camera
 
 /// TODO LIST ////
 
-- Chica is broken and not rolling for movement oppertunities, fix it
-
-- add a way to open and close doors
+- add a way to open and close doors (make sure to add door disabled message)
 - add power to drain
 - add other animatronics
 - move to next night when you win
 - make a main menu
 - make a camera function
-- make key listeners asyncronous somehow so the buttons are responsive
 - optimize animatronic movement so adding more won't bog it down
 
 

@@ -64,7 +64,7 @@ namespace FNAF
                 else{return 1;}
                 case 7:
                     // in the office ready to attack when camera is set down
-                    Program.office.doorsEnabled = false;
+                    Program.office.disableDoors();
 
                 break;
                 
@@ -93,6 +93,7 @@ namespace FNAF
             //if in the office, waiting for camera to be set down
             else
             {
+                Program.office.disableDoors();
                 if (Program.office.isCameraSetDown)
                 {
                     attack();

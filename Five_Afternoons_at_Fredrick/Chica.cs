@@ -13,7 +13,7 @@ namespace FNAF
         Random random = new Random();
         protected override string name => "Chica";
         protected override bool isCameraStalled => false;
-        private double interval = utils.chica_interval;
+        private double interval = 2;
         public List<string> path = ["1A", "1B", "7", "6", "4A", "4B", "Doorway_R", "Inside_Office"];
         public int AI = 0;
         public int currentPOS = 0;
@@ -56,17 +56,16 @@ namespace FNAF
                     rand = random.Next(0,2);
                 return choice[rand];
                 case 6:
-                if (Program.office.isDoorClosed_L != true)
+                if (Program.office.isDoorClosed_R != true)
                 {
-                    choice = [1,4];
-                    rand = random.Next(0,2);
-                    return choice[rand];
+                    return 7;
                 }
-                else{return 1;}
+                else{choice = [1,4];
+                    rand = random.Next(0,2);
+                    return choice[rand];}
                 case 7:
                     // in the office ready to attack when camera is set down
-                    Program.office.doorsEnabled = false;
-
+                    Program.office.disableDoors();
                 break;
                 
                 
@@ -94,6 +93,7 @@ namespace FNAF
             //if in the office, waiting for camera to be set down
             else
             {
+                Program.office.disableDoors();
                 if (Program.office.isCameraSetDown)
                 {
                     attack();

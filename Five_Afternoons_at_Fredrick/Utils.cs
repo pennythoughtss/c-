@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.ComponentModel.DataAnnotations;
 
 namespace FNAF
 {
@@ -38,6 +39,7 @@ namespace FNAF
         public string whoKilledYou = "";
 
         public string doorDisabledMessage = "Doors disabled";
+        public string officeDisplay = "";
 
 
         // sets the current night and current AI for that night
