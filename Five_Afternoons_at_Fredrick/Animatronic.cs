@@ -10,7 +10,7 @@ namespace FNAF
     public abstract class Animatronic()
     {
         protected virtual string name => "Endo";
-        protected virtual double interval => 0;
+        //protected virtual double interval => 0;
         protected virtual bool isCameraStalled => false;
         //protected virtual List<string> path => [];
         // protected virtual int AI => 0;
@@ -18,8 +18,8 @@ namespace FNAF
 
         public virtual void attack()
         {
-            Console.Write($"You've been gotten by {name}!");
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Program.utils.whoKilledYou = name;
+            Program.utils.death = true;
         }
 
         public virtual int nextPOS()
@@ -39,6 +39,12 @@ namespace FNAF
         {
             //set yo bad boy AI
 
+        }
+
+        public virtual string getCurrentPos()
+        {
+            //get that junk
+            return "";
         }
 
 

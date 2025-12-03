@@ -8,6 +8,7 @@ namespace FNAF
     class Utils
     {
         private int currentNight = 1;
+        private int timeTickSpeed = 60; // how long (in seconds) is each hour
 
         // freddy, bonnie, chica, foxy
         private List<int> night1_AI = [0,0,0,0];
@@ -30,6 +31,13 @@ namespace FNAF
 
         public List<int> time = [12,1,2,3,4,5,6];
         public int currTime = 0;
+
+        public bool death = false;
+        public bool victory = false;
+
+        public string whoKilledYou = "";
+
+        public string doorDisabledMessage = "Doors disabled";
 
 
         // sets the current night and current AI for that night
@@ -77,10 +85,34 @@ namespace FNAF
 
         public void setTime(double seconds)
         {
-            if (seconds == 100 * 60)
+            if (seconds == 100 * timeTickSpeed)
             {
                 currTime = 1;
             }
+            if (seconds == 200 * timeTickSpeed)
+            {
+                currTime = 2;
+                set_2AM();
+            }
+            if (seconds == 300 * timeTickSpeed)
+            {
+                currTime = 3;
+                set_3AM();
+            }
+            if (seconds == 400 * timeTickSpeed)
+            {
+                currTime = 4;
+                set_4AM();
+            }
+            if (seconds == 500 * timeTickSpeed)
+            {
+                currTime = 5;
+            }
+            if (seconds == 600 * timeTickSpeed)
+            {
+                currTime = 6;
+            }
+            
         }
         public void set_2AM()
         {

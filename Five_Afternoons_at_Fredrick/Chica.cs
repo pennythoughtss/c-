@@ -7,14 +7,14 @@ using FNAF;
 
 namespace FNAF
 {
-    class Bonnie : Animatronic
+    class Chica : Animatronic
     {
         static Utils utils = Program.utils;
         Random random = new Random();
-        protected override string name => "Bonnie";
+        protected override string name => "Chica";
         protected override bool isCameraStalled => false;
-        private double interval = utils.bonnie_interval;
-        public List<string> path = ["1A", "1B", "5", "2A", "3", "2B", "Doorway_L", "Inside_Office"];
+        private double interval = utils.chica_interval;
+        public List<string> path = ["1A", "1B", "7", "6", "4A", "4B", "Doorway_R", "Inside_Office"];
         public int AI = 0;
         public int currentPOS = 0;
         public int tempMil = 0;
@@ -28,28 +28,27 @@ namespace FNAF
 
         public override int nextPOS()
         {
+            //fix path for chica if it seems wrong
             List<int> choice = [];
             int rand = 0;
             switch (currentPOS)
             {
                 case 0:
-                    choice = [1,2];
-                    rand = random.Next(0,2);
-                return choice[rand];
+                return 1;
                 case 1:
-                    choice = [2,3];
-                    rand = random.Next(0,2);
+                    choice = [2,3,4];
+                    rand = random.Next(0,3);
                 return choice[rand];
                 case 2:
-                    choice = [1,3];
+                    choice = [3,4];
                     rand = random.Next(0,2);
                 return choice[rand];
                 case 3:
-                    choice = [4,5];
+                    choice = [4,2];
                     rand = random.Next(0,2);
                 return choice[rand];
                 case 4:
-                    choice = [3,6];
+                    choice = [1,5];
                     rand = random.Next(0,2);
                 return choice[rand];
                 case 5:
@@ -59,7 +58,9 @@ namespace FNAF
                 case 6:
                 if (Program.office.isDoorClosed_L != true)
                 {
-                    return 7;
+                    choice = [1,4];
+                    rand = random.Next(0,2);
+                    return choice[rand];
                 }
                 else{return 1;}
                 case 7:
