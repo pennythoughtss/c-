@@ -9,10 +9,12 @@ class Program()
     static int tick = 0;
     static int dt_current = 1;
     static int dt_last = 0;
+    static bool toggleDev = false;
 
     static double seconds = 0;
     static int miliseconds = 0;
     static int setDownTimer = 0;
+    static int setDownStall = 0;
 
     static int currentNight = 6;
     static bool quit = false;
@@ -23,10 +25,12 @@ class Program()
     public static Office office = new Office();
     public static Animation animation = new Animation();
     public static SecurityCamera camera = new SecurityCamera();
+    static Random random = new Random();
 
     //make sure to initalize the animatronics
     static Bonnie bonnie = new Bonnie();
     static Chica chica = new Chica();
+    static Foxy foxy = new Foxy();
 
 
 //for the update section because I keep losing it
@@ -39,17 +43,35 @@ class Program()
             utils.setTime(miliseconds);
             bonnie.setAI(utils.currNight_AI[1]); // bonnie is #1
             chica.setAI(utils.currNight_AI[2]);
+            foxy.setAI(utils.currNight_AI[3]);
+
             if (utils.currTime == 6)
             {
                 utils.victory = true;
             }
+            if (office.isCameraUP)
+            {
+                foxy.isCameraStalled = true;
+                setDownStall = random.Next(83, 1748);
+
+            }
+            else
+            {
+                if (setDownStall > 0)
+                {
+                    setDownStall--;
+                    foxy.isCameraStalled = true;
+                }
+                else{foxy.isCameraStalled = false;}
+            }
 
             // for the love of everything just make sure to add the animatronic update functions
-            bonnie.updateMovement(seconds);
-            chica.updateMovement(seconds);
+            //bonnie.updateMovement(seconds);
+            //chica.updateMovement(seconds);
+            foxy.updateMovement(seconds);
 
             office.setDoorDisplay();
-            camera.updateAnimatronicPos("1A", bonnie.getCurrentPos(), chica.getCurrentPos(), "1C");
+            camera.updateAnimatronicPos("1A", bonnie.getCurrentPos(), chica.getCurrentPos(), foxy.getCurrentPos());
             camera.updateCameraData();
 
         }
@@ -77,9 +99,12 @@ class Program()
                 //temporary animatronic position display
                 Console.Clear();
                 Console.WriteLine($"Power: {office.power}, {utils.time[utils.currTime]}:00 AM, {miliseconds}");
-                Console.WriteLine($"Bonnie: {bonnie.getCurrentPos()}, AI:{bonnie.AI}, {bonnie.movementCheck}");
-                Console.WriteLine($"Chica: {chica.getCurrentPos()}, AI:{chica.AI}, {chica.movementCheck}");
-                Console.WriteLine($"[{camera.AnimatronicPos[0]}, {camera.AnimatronicPos[1]}, {camera.AnimatronicPos[2]}, {camera.AnimatronicPos[3]}]");
+                if (toggleDev)
+                {
+                    Console.WriteLine($"Bonnie: {bonnie.getCurrentPos()}, AI:{bonnie.AI}, {bonnie.movementCheck}");
+                    Console.WriteLine($"Chica: {chica.getCurrentPos()}, AI:{chica.AI}, {chica.movementCheck}"); 
+                    Console.WriteLine($"Foxy: {foxy.getCurrentPos()}, AI:{foxy.AI}, {foxy.movementCheck}");                }
+                
 
                 
                 office.displayOffice();
@@ -87,7 +112,7 @@ class Program()
                 if (office.isCameraUP)
                 {
                     Console.WriteLine("\nCamera is up!");
-                    camera.viewCamera();
+                    camera.viewCamera(foxy.getStage());
                     setDownTimer = 100;
                     office.doorsEnabled = false;
                 }
@@ -98,7 +123,6 @@ class Program()
                     {
                         setDownTimer--;
                         office.isCameraSetDown = true;
-                        Console.WriteLine("\nCamera set down");
                     }
                     else
                     {
@@ -254,6 +278,15 @@ class Program()
                             }
                              else {office.isLightON_R = false;}
                         }
+                    }
+
+                    if (key == ConsoleKey.L)
+                    {
+                        if(!toggleDev)
+                        {
+                            toggleDev = true;
+                        }
+                        else {toggleDev = false;}
                     }
 
                     if (key == ConsoleKey.Escape)

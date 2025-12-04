@@ -1,3 +1,4 @@
+using System.Text;
 using FNAF;
 
 namespace FNAF{
@@ -11,39 +12,32 @@ namespace FNAF{
         "E. Hall Corner", "Kitchen (Disabled, Audio only)", "Restrooms"];
 
         public List<string> AnimatronicPos = ["1A","1A","1A","1C"];
-        private List<int> AnimatronicOnCamera = [0,0,0,0];
+        private List<string> AnimatronicOnCamera = ["No", "No", "No", "No"];
 
-        private string currentCamera = "1A";
+        public string currentCamera = "1A";
         public int currentCamNum = 0;
-        private int dt1 = 1;
-        private int dt2 = 0;
 
-        public void viewCamera()
+        public void viewCamera(string foxyPos)
         {
+            var cameraDisplay = new StringBuilder();
             Console.WriteLine($"{currentCamera} : {camNameList[currentCamNum]}");
 
             if (currentCamera == "6")
             {
-                Console.WriteLine($"is Animatronic on camera? {Program.animation.AudioOnly()}");
+                cameraDisplay.Append(Program.animation.AudioOnly());
             }
             else
             {
-            Console.WriteLine($"is Animatronic on camera? [{YesNo(AnimatronicOnCamera[0])}, {YesNo(AnimatronicOnCamera[1])}, {YesNo(AnimatronicOnCamera[2])}, {YesNo(AnimatronicOnCamera[3])}]");
+                if (AnimatronicOnCamera.Contains("Freddy")){cameraDisplay.Append("Freddy ");}
+                if (AnimatronicOnCamera.Contains("Bonnie")){cameraDisplay.Append("Bonnie ");}
+                if (AnimatronicOnCamera.Contains("Chica")){cameraDisplay.Append("Chica");}
+                if (AnimatronicOnCamera.Contains("Foxy")){cameraDisplay.Append(foxyPos);}
             }
+
+            Console.WriteLine("[" + cameraDisplay.ToString() + "]");
             
         }
 
-        private string YesNo(int status)
-        {
-            switch(status){
-                case 0:
-                    return "No";
-                case 1:
-                    return "Yes";
-                default:
-                    return "No";
-            }
-        }
 
         public void updateAnimatronicPos(string freddyPos, string bonniePos, string chicaPos, string foxyPos)
         {
@@ -55,20 +49,23 @@ namespace FNAF{
 
         public void updateCameraData()
         {
-            //sets the currentCam to currentCamNum on the camList
             currentCamera = camList[currentCamNum];
 
             //checks if animatronics are on camera and sets stuff accordingly
             if (AnimatronicPos.Contains(currentCamera))
             {
-                if(AnimatronicPos[0] == currentCamera){AnimatronicOnCamera[0] = 1;}
-                else if(AnimatronicPos[0] != currentCamera){AnimatronicOnCamera[0] = 0;}
-                if(AnimatronicPos[1] == currentCamera){AnimatronicOnCamera[1] = 1;}
-                else if(AnimatronicPos[1] != currentCamera){AnimatronicOnCamera[1] = 0;}
-                if(AnimatronicPos[2] == currentCamera){AnimatronicOnCamera[2] = 1;}
-                else if(AnimatronicPos[2] != currentCamera){AnimatronicOnCamera[2] = 0;}
-                if(AnimatronicPos[3] == currentCamera){AnimatronicOnCamera[3] = 1;}
-                else if(AnimatronicPos[3] != currentCamera){AnimatronicOnCamera[3] = 0;}
+                if(AnimatronicPos[0] == currentCamera){AnimatronicOnCamera[0] = "Freddy";}
+                else if(AnimatronicPos[0] != currentCamera){AnimatronicOnCamera[0] = "No";}
+                if(AnimatronicPos[1] == currentCamera){AnimatronicOnCamera[1] = "Bonnie";}
+                else if(AnimatronicPos[1] != currentCamera){AnimatronicOnCamera[1] = "No";}
+                if(AnimatronicPos[2] == currentCamera){AnimatronicOnCamera[2] = "Chica";}
+                else if(AnimatronicPos[2] != currentCamera){AnimatronicOnCamera[2] = "No";}
+                if(AnimatronicPos[3] == currentCamera){AnimatronicOnCamera[3] = "Foxy";}
+                else if(AnimatronicPos[3] != currentCamera){AnimatronicOnCamera[3] = "No";}
+            }
+            else
+            {
+                AnimatronicOnCamera = ["No","No","No","No"];
             }
         }
     }

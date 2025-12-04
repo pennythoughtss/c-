@@ -12,7 +12,6 @@ namespace FNAF
         static Utils utils = Program.utils;
         Random random = new Random();
         protected override string name => "Chica";
-        protected override bool isCameraStalled => false;
         private double interval = utils.chica_interval;
         public List<string> path = ["1A", "1B", "7", "6", "4A", "4B", "Doorway_R", "Inside_Office"];
         public int AI = 0;

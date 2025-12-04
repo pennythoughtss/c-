@@ -11,7 +11,7 @@ namespace FNAF
     {
         protected virtual string name => "Endo";
         //protected virtual double interval => 0;
-        protected virtual bool isCameraStalled => false;
+        //protected virtual bool isCameraStalled => false;
         //protected virtual List<string> path => [];
         // protected virtual int AI => 0;
         // protected virtual int currentPOS => 0;
