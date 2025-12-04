@@ -1,3 +1,4 @@
+using System.Text;
 using FNAF;
 
 namespace FNAF
@@ -8,14 +9,15 @@ namespace FNAF
 
     class Animation()
     {
+        Random random = new Random();
 
         public void sixAM_YAY_1()
         {
             List<string> anim = ["       AM", "0      AM"," 0     AM","  0    AM",
             "   0   AM","    0  AM","     0 AM","     0 AM","0    0 AM"," 0   0 AM","  0  0 AM",
             "   0 0 AM","    00 AM","    00 AM",":   00 AM"," :  00 AM","  : 00 AM","   :00 AM","   :00 AM",
-            "6  :00 AM"," 6 :00 AM","  6:00 AM","  6:00 AM","  6:00 AM"," -6:00 AM-"," \\6:00 AM\\"," |6:00 AM|"," /6:00 AM/",
-            " -6:00 AM-",];
+            "6  :00 AM"," 6 :00 AM","  6:00 AM","  6:00 AM","  6:00 AM","- 6:00 AM -","\\ 6:00 AM \\","| 6:00 AM |","/ 6:00 AM /",
+            "- 6:00 AM -"];
             
             string spacer = "   ";
 
@@ -87,6 +89,33 @@ namespace FNAF
             Console.WriteLine(spacer + line7[0]);
             Console.WriteLine(spacer + line8[0]);
             Thread.Sleep(200);
+        }
+
+        public string AudioOnly()
+        {
+            string defString = "N/A, N/A, N/A, N/A";
+            string refString = "~`!@#$%^&*()_+=<>?/|....,";
+            var randString = new StringBuilder();
+            int num1 = 0;
+            int num2 = 0;
+
+            foreach(char c in defString)
+            {
+                num1 = random.Next(0,2);
+                if (num1 == 0)
+                {
+                    num2 = random.Next(0,refString.Length);
+                    randString.Append(refString[num2]);
+
+                }
+                else
+                {
+                    randString.Append(c);
+                }
+            }
+
+            return "[" + randString.ToString() + "]";
+            
         }
         
     }

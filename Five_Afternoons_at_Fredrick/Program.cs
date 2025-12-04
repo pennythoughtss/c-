@@ -5,9 +5,6 @@ using FNAF;
 
 class Program()
 {
-
-    //static System.Timers.Timer aTimer = new System.Timers.Timer();
-    
     static int FPS = 60; // FPS for visual updates only, 60fps or higher just updates as fast as the screen
     static int tick = 0;
     static int dt_current = 1;
@@ -25,6 +22,7 @@ class Program()
     public static Utils utils = new Utils();
     public static Office office = new Office();
     public static Animation animation = new Animation();
+    public static SecurityCamera camera = new SecurityCamera();
 
     //make sure to initalize the animatronics
     static Bonnie bonnie = new Bonnie();
@@ -33,7 +31,6 @@ class Program()
 
 //for the update section because I keep losing it
 ////////////////////////////////////////////////////////////////////////////////////// 
-/// static void Update(Object source, System.Timers.ElapsedEventArgs e) 
     static void UpdateLogic()
     {   
         if (utils.death != true && utils.victory != true)
@@ -52,6 +49,8 @@ class Program()
             chica.updateMovement(seconds);
 
             office.setDoorDisplay();
+            camera.updateAnimatronicPos("1A", bonnie.getCurrentPos(), chica.getCurrentPos(), "1C");
+            camera.updateCameraData();
 
         }
  
@@ -80,6 +79,7 @@ class Program()
                 Console.WriteLine($"Power: {office.power}, {utils.time[utils.currTime]}:00 AM, {miliseconds}");
                 Console.WriteLine($"Bonnie: {bonnie.getCurrentPos()}, AI:{bonnie.AI}, {bonnie.movementCheck}");
                 Console.WriteLine($"Chica: {chica.getCurrentPos()}, AI:{chica.AI}, {chica.movementCheck}");
+                Console.WriteLine($"[{camera.AnimatronicPos[0]}, {camera.AnimatronicPos[1]}, {camera.AnimatronicPos[2]}, {camera.AnimatronicPos[3]}]");
 
                 
                 office.displayOffice();
@@ -87,10 +87,13 @@ class Program()
                 if (office.isCameraUP)
                 {
                     Console.WriteLine("\nCamera is up!");
+                    camera.viewCamera();
                     setDownTimer = 100;
+                    office.doorsEnabled = false;
                 }
                 else
                 { 
+                    office.doorsEnabled = true;
                     if (setDownTimer > 0)
                     {
                         setDownTimer--;
@@ -99,7 +102,7 @@ class Program()
                     }
                     else
                     {
-                        office.isCameraSetDown = false;
+                        office.isCameraSetDown = false; 
                     }
                     
                 }
@@ -169,10 +172,6 @@ class Program()
         //init until the main loop
         Console.WriteLine("\n");
 
-        //aTimer.Elapsed += Update;
-        //aTimer.Interval = 1; // ~ bad boy updates every millisecond, maybe a bad idea
-        
-
         Console.CursorVisible = false;
 
         // TODO set the next night when you win I guess
@@ -181,8 +180,6 @@ class Program()
         //bonnie.currentPOS = 5;
         //office.ChangeLeftDoor(1);
 
-
-        //aTimer.Enabled = true;
 
 //event listeners for key control stuff
         Task.Factory.StartNew(() =>
@@ -212,7 +209,13 @@ class Program()
                             {
                                 office.ChangeLeftDoor(1);
                             }
-                    }
+                            }
+                        else if (office.isCameraUP)
+                            {
+                                if (camera.currentCamNum > 0){camera.currentCamNum -=1;}
+                                else{camera.currentCamNum = 10;}
+                                
+                            }
                     }
                     if (key == ConsoleKey.D)
                     {
@@ -225,7 +228,12 @@ class Program()
                             {
                                 office.ChangeRightDoor(1);
                             }
-                    }
+                        }
+                        else if (office.isCameraUP)
+                            {
+                                if (camera.currentCamNum < 10){camera.currentCamNum +=1;}
+                                else{camera.currentCamNum = 0;}
+                            }
                     }
                     if (key == ConsoleKey.Q)
                     {
@@ -262,7 +270,7 @@ class Program()
 ////////////////// MAIN LOOP////////////////////////////////////////////////////////////
         while (quit != true)
         {
-            //does code stuff, will update automatically
+            //does code stuff, add update funtions
 
             UpdateLogic();
             UpdateVisual();

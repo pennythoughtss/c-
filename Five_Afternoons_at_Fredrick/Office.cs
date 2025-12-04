@@ -311,8 +311,8 @@ namespace FNAF
         public void displayOfficeRCLOSEDLightSPOOK()
         {
             Program.utils.officeDisplay = @"
-         _  ___               ___  _
-         _| |v| q   OFFICE  e |\| |_
+         _  ___               ___  
+         _| |v| q   OFFICE  e |\| 
             |_| a    ----   d |\|";        }
 
 ///////////////////////////////////
