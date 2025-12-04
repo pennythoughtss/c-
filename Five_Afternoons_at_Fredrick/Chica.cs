@@ -13,7 +13,7 @@ namespace FNAF
         Random random = new Random();
         protected override string name => "Chica";
         protected override bool isCameraStalled => false;
-        private double interval = 2;
+        private double interval = utils.chica_interval;
         public List<string> path = ["1A", "1B", "7", "6", "4A", "4B", "Doorway_R", "Inside_Office"];
         public int AI = 0;
         public int currentPOS = 0;
@@ -76,6 +76,14 @@ namespace FNAF
         public override void updateMovement(double second)
         {
             tempMil += 1;
+            if (currentPOS == 6)
+            {
+                Program.office.ChicaAtDoor = true;
+            }
+            else
+            {
+                Program.office.ChicaAtDoor = false;
+            }
 
             //if not in the office
             if (currentPOS != 7)

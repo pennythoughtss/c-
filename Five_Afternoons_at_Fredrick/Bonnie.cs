@@ -76,6 +76,14 @@ namespace FNAF
         public override void updateMovement(double second)
         {
             tempMil += 1;
+            if (currentPOS == 6)
+            {
+                Program.office.BonnieAtDoor = true;
+            }
+            else
+            {
+                Program.office.BonnieAtDoor = false;
+            }
 
             //if not in the office
             if (currentPOS != 7)

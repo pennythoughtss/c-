@@ -9,7 +9,7 @@ namespace FNAF
     class Utils
     {
         private int currentNight = 1;
-        private int timeTickSpeed = 60; // how long (in seconds) is each hour
+        private int timeTickSpeed = 60; // how long (in seconds) is each hour (60 default)
 
         // freddy, bonnie, chica, foxy
         private List<int> night1_AI = [0,0,0,0];
@@ -27,7 +27,7 @@ namespace FNAF
         // movement intervals (in seconds)
         public double freddy_interval = 3.02;
         public double bonnie_interval = 4.97;
-        public double chica_interval = 4.98;
+        public double chica_interval = 4.99; //chica's interval is supposed to be 4.98 but she doesn't like it for some reason
         public double foxy_interval = 5.01; 
 
         public List<int> time = [12,1,2,3,4,5,6];
@@ -184,5 +184,6 @@ namespace FNAF
         }
 
     }
+    
     
 }

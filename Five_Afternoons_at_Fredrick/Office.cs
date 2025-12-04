@@ -6,8 +6,12 @@ namespace FNAF
     {
         public bool isDoorClosed_L = false;
         public bool isDoorClosed_R = false;
+        public bool isLightON_L = false;
+        public bool isLightON_R = false;
         public bool doorsEnabled = true;
         public bool doorDisabledMessage = false;
+        public bool BonnieAtDoor = false;
+        public bool ChicaAtDoor = false;
 
         public bool isCameraUP = false;
         public bool isCameraSetDown = false;
@@ -41,6 +45,113 @@ namespace FNAF
                 break;
             }
 
+        }
+
+// theres probably a better way to do this but I'm too tired to figure it out right now
+// I will actually cry if I messed up somewhere in the setDoorDisplay
+        public void setDoorDisplay()
+        {
+            if (isDoorClosed_L && !isDoorClosed_R)
+            {
+                if (isLightON_R && !isLightON_L)
+                {
+                    if(ChicaAtDoor){displayOfficeLCLOSEDLightSPOOK();}
+                    else{displayOfficeLCLOSEDRLight();}
+                }
+                else if (isLightON_L && !isLightON_R)
+                {
+                    if(BonnieAtDoor){displayOfficeLCLOSEDLLightSPOOK();}
+                    else{displayOfficeLCLOSEDLLight();}
+                }
+                else if(isLightON_L && isLightON_R)
+                {
+                    if(BonnieAtDoor && !ChicaAtDoor){displayOfficeLCLOSEDBLightLSPOOK();}
+                    else if(ChicaAtDoor && !BonnieAtDoor){displayOfficeLCLOSEDBLightRSPOOK();}
+                    else if (ChicaAtDoor && BonnieAtDoor){displayOfficeLCLOSEDBLightBSPOOK();}
+                    else{displayOfficeLCLOSEDBLight();}
+                }
+                else
+                {
+                    displayOfficeLCLOSED();
+                }
+                
+            }
+            else if (isDoorClosed_R && !isDoorClosed_L)
+            {
+                if (isLightON_R && !isLightON_L)
+                {
+                    if(ChicaAtDoor){displayOfficeRCLOSEDRLightSPOOK();}
+                    else{displayOfficeRCLOSEDRLight();}
+                }
+                else if (isLightON_L && !isLightON_R)
+                {
+                    if(BonnieAtDoor){displayOfficeRCLOSEDLightSPOOK();}
+                    else{displayOfficeRCLOSEDLLight();}
+                }
+                else if(isLightON_L && isLightON_R)
+                {
+                    if(BonnieAtDoor && !ChicaAtDoor){displayOfficeRCLOSEDBLightLSPOOK();}
+                    else if(ChicaAtDoor && !BonnieAtDoor){displayOfficeRCLOSEDBLightRSPOOK();}
+                    else if (ChicaAtDoor && BonnieAtDoor){displayOfficeRCLOSEDBLightBSPOOK();}
+                    else{displayOfficeRCLOSEDBLight();}
+                }
+                else
+                {
+                    displayOfficeRCLOSED();
+                }
+                
+            }
+            else if (isDoorClosed_L && isDoorClosed_R)
+            {
+                if (isLightON_R && !isLightON_L)
+                {
+                    if(ChicaAtDoor){displayOfficeCLOSEDRLightSPOOK();}
+                    else{displayOfficeCLOSEDRLight();}
+                }
+                else if (isLightON_L && !isLightON_R)
+                {
+                    if(BonnieAtDoor){displayOfficeCLOSEDLLightSPOOK();}
+                    else{displayOfficeCLOSEDLLight();}
+                }
+                else if(isLightON_L && isLightON_R)
+                {
+                    if(BonnieAtDoor && !ChicaAtDoor){displayOfficeCLOSEDBLightLSPOOK();}
+                    else if(ChicaAtDoor && !BonnieAtDoor){displayOfficeCLOSEDBLightRSPOOK();}
+                    else if (ChicaAtDoor && BonnieAtDoor){displayOfficeCLOSEDBLightBSPOOK();}
+                    else{displayOfficeCLOSEDBLight();}
+                }
+                else
+                {
+                    displayOfficeCLOSED();
+                }
+                
+            }
+            else
+            {
+                if (isLightON_L && !isLightON_R)
+                {
+                    if(BonnieAtDoor){displayOfficeNormalLLightSPOOK();}
+                    else{displayOfficeNormalLLight();}
+                    
+                }
+                else if (isLightON_R && !isLightON_L)
+                {
+                    if(ChicaAtDoor){displayOfficeNormalRLightSPOOK();}
+                    else{displayOfficeNormalRLight();}
+                }
+                else if (isLightON_R && isLightON_L)
+                {
+                    if(ChicaAtDoor && !BonnieAtDoor){displayOfficeNormalLightSPOOKR();}
+                    else if(BonnieAtDoor && !ChicaAtDoor){displayOfficeNormalLightSPOOKL();}
+                    else if(ChicaAtDoor && BonnieAtDoor){displayOfficeNormalLightSPOOK();}
+                    else{displayOfficeNormalLight();}
+                }
+                else
+                {
+                    displayOfficeNormal();
+                }
+            }
+            
         }
 
         public void disableDoors()
@@ -82,78 +193,214 @@ namespace FNAF
         public void displayOfficeNormalLLight()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            | | q   OFFICE  e | |
+         _  ___               ___
+         _| | | q   OFFICE  e | |
             |_| a    ----   d | |";        }
         public void displayOfficeNormalRLight()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            | | q   OFFICE  e | |
+            ___               ___  _
+            | | q   OFFICE  e | | |_
             | | a    ----   d |_|";        }
         public void displayOfficeNormalLight()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            | | q   OFFICE  e | |
+         _  ___               ___  _
+         _| | | q   OFFICE  e | | |_
             |_| a    ----   d |_|";        }
-        public void displayOfficeLCLOSEDLight()
+        public void displayOfficeLCLOSEDRLight()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            |\| q   OFFICE  e | |
+            ___               ___  _
+            |\| q   OFFICE  e | | |_
             |\| a    ----   d |_|";        }
-        public void displayOfficeRCLOSEDLight()
+        public void displayOfficeRCLOSEDLLight()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            | | q   OFFICE  e |\|
+         _  ___               ___
+         _| | | q   OFFICE  e |\|
             |_| a    ----   d |\|";        }
+
+////////////////////////////
+        public void displayOfficeLCLOSEDLLight()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  
+         _| |\| q   OFFICE  e | | 
+            |\| a    ----   d | |";        }
+        public void displayOfficeRCLOSEDRLight()
+        {
+            Program.utils.officeDisplay = @"
+            ___               ___  _
+            | | q   OFFICE  e |\| |_
+            | | a    ----   d |\|";        }
+
+        public void displayOfficeLCLOSEDBLight()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| |\| q   OFFICE  e | | |_
+            |\| a    ----   d |_|";        }
+        public void displayOfficeRCLOSEDBLight()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| | | q   OFFICE  e |\| |_
+            |_| a    ----   d |\|";        }
+
+        public void displayOfficeCLOSEDRLight()
+        {
+            Program.utils.officeDisplay = @"
+            ___               ___  _
+            |\| q   OFFICE  e |\| |_
+            |\| a    ----   d |\|";        }
+        public void displayOfficeCLOSEDLLight()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  
+         _| |\| q   OFFICE  e |\| 
+            |\| a    ----   d |\|";        }
+
+        public void displayOfficeCLOSEDBLight()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| |\| q   OFFICE  e |\| |_
+            |\| a    ----   d |\|";        }
+
+        
+/////////////////////////
 
 
         public void displayOfficeNormalLLightSPOOK()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            |v| q   OFFICE  e | |
+         _  ___               ___
+         _| |v| q   OFFICE  e | | 
             |_| a    ----   d | |";        }
         public void displayOfficeNormalRLightSPOOK()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            | | q   OFFICE  e |v|
+            ___               ___  _
+            | | q   OFFICE  e |v| |_
             | | a    ----   d |_|";        }
         public void displayOfficeNormalLightSPOOKR()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            | | q   OFFICE  e |v|
+         _  ___               ___  _
+         _| | | q   OFFICE  e |v| |_
             |_| a    ----   d |_|";        }
         public void displayOfficeNormalLightSPOOKL()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            |v| q   OFFICE  e | |
+         _  ___               ___  _
+         _| |v| q   OFFICE  e | | |_
             |_| a    ----   d |_|";        }
         public void displayOfficeNormalLightSPOOK()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            |v| q   OFFICE  e |v|
+         _  ___               ___  _
+         _| |v| q   OFFICE  e |v| |_
             |_| a    ----   d |_|";        }
         public void displayOfficeLCLOSEDLightSPOOK()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            |\| q   OFFICE  e |v|
+            ___               ___  _
+            |\| q   OFFICE  e |v| |_
             |\| a    ----   d |_|";        }
         public void displayOfficeRCLOSEDLightSPOOK()
         {
             Program.utils.officeDisplay = @"
-            ___               ___
-            |v| q   OFFICE  e |\|
+         _  ___               ___  _
+         _| |v| q   OFFICE  e |\| |_
             |_| a    ----   d |\|";        }
 
+///////////////////////////////////
+
+        public void displayOfficeLCLOSEDLLightSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  
+         V| |\| q   OFFICE  e | | 
+            |\| a    ----   d | |";        }
+        public void displayOfficeRCLOSEDRLightSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+            ___               ___  _
+            | | q   OFFICE  e |\| |V
+            | | a    ----   d |\|";        }
+
+        public void displayOfficeLCLOSEDBLightLSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         V| |\| q   OFFICE  e | | |_
+            |\| a    ----   d |_|";        }
+
+        public void displayOfficeLCLOSEDBLightRSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| |\| q   OFFICE  e |v| |_
+            |\| a    ----   d |_|";        }
+        public void displayOfficeLCLOSEDBLightBSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         V| |\| q   OFFICE  e |v| |_
+            |\| a    ----   d |_|";        }
+        public void displayOfficeRCLOSEDBLightLSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| |v| q   OFFICE  e |\| |_
+            |_| a    ----   d |\|";        }
+        public void displayOfficeRCLOSEDBLightRSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| | | q   OFFICE  e |\| |V
+            |_| a    ----   d |\|";        }
+        public void displayOfficeRCLOSEDBLightBSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| |v| q   OFFICE  e |\| |V
+            |_| a    ----   d |\|";        }
+
+        public void displayOfficeCLOSEDRLightSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+            ___               ___  _
+            |\| q   OFFICE  e |\| |V
+            |\| a    ----   d |\|";        }
+        public void displayOfficeCLOSEDLLightSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  
+         V| |\| q   OFFICE  e |\| 
+            |\| a    ----   d |\|";        }
+
+        public void displayOfficeCLOSEDBLightLSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         V| |\| q   OFFICE  e |\| |_
+            |\| a    ----   d |\|";        }
+        public void displayOfficeCLOSEDBLightRSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         _| |\| q   OFFICE  e |\| |V
+            |\| a    ----   d |\|";        }
+        public void displayOfficeCLOSEDBLightBSPOOK()
+        {
+            Program.utils.officeDisplay = @"
+         _  ___               ___  _
+         V| |\| q   OFFICE  e |\| |V
+            |\| a    ----   d |\|";        }
+
+///////////////////////////////////////
         public void powerOut()
         {
             doorsEnabled = false;
