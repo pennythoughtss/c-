@@ -16,7 +16,7 @@ class Program()
     static int setDownTimer = 0;
     static int setDownStall = 0;
 
-    static int currentNight = 6; //////////// change current night
+    static int currentNight = 2; //////////// change current night
     static bool quit = false;
     static bool playedAnim = false;
     static int menuTimer = 300;
@@ -31,6 +31,7 @@ class Program()
     static Bonnie bonnie = new Bonnie();
     static Chica chica = new Chica();
     static Foxy foxy = new Foxy();
+    static Freddy freddy = new Freddy();
 
 
 //for the update section because I keep losing it
@@ -44,6 +45,7 @@ class Program()
             bonnie.setAI(utils.currNight_AI[1]); // bonnie is #1
             chica.setAI(utils.currNight_AI[2]);
             foxy.setAI(utils.currNight_AI[3]);
+            freddy.setAI(utils.currNight_AI[0]);
 
             if (utils.currTime == 6)
             {
@@ -53,6 +55,15 @@ class Program()
             {
                 foxy.isCameraStalled = true;
                 setDownStall = random.Next(83, 1748);
+                if (freddy.AI < 10 && !freddy.isPhase2)
+                {
+                    freddy.isCameraStalled = true;
+                }
+                else if(camera.currentCamera == freddy.path[freddy.currentPOS] && freddy.isPhase2)
+                {
+                    freddy.isCameraStalled = true;
+                }
+                else{freddy.isCameraStalled = false;}
 
             }
             else
@@ -63,6 +74,7 @@ class Program()
                     foxy.isCameraStalled = true;
                 }
                 else{foxy.isCameraStalled = false;}
+                freddy.isCameraStalled = false;
             }
 
             // for the love of everything just make sure to add the animatronic update functions
@@ -77,11 +89,13 @@ class Program()
                 bonnie.currentPOS = 0;
                 chica.currentPOS = 0;
                 foxy.currentPOS = 0;
+                freddy.currentPOS = 7;
             }
             
+            freddy.updateMovement(seconds);
 
             office.setDoorDisplay();
-            camera.updateAnimatronicPos("1A", bonnie.getCurrentPos(), chica.getCurrentPos(), foxy.getCurrentPos());
+            camera.updateAnimatronicPos(freddy.getCurrentPos(), bonnie.getCurrentPos(), chica.getCurrentPos(), foxy.getCurrentPos());
             camera.updateCameraData();
             office.setUseage();
             office.updatePower(currentNight);
@@ -117,7 +131,9 @@ class Program()
                     Console.WriteLine(miliseconds);
                     Console.WriteLine($"Bonnie: {bonnie.getCurrentPos()}, AI:{bonnie.AI}, {bonnie.movementCheck}");
                     Console.WriteLine($"Chica: {chica.getCurrentPos()}, AI:{chica.AI}, {chica.movementCheck}"); 
-                    Console.WriteLine($"Foxy: {foxy.getCurrentPos()}, AI:{foxy.AI}, {foxy.movementCheck}");                }
+                    Console.WriteLine($"Foxy: {foxy.getCurrentPos()}, AI:{foxy.AI}, {foxy.movementCheck}, isCameraStalled = {foxy.isCameraStalled}");
+                    Console.WriteLine($"Freddy: {freddy.getCurrentPos()}, AI:{freddy.AI}, {freddy.movementCheck}, isCameraStalled = {freddy.isCameraStalled}, canAttack = {freddy.canAttack}");
+                }
                 
 
                 

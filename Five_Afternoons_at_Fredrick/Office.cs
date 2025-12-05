@@ -349,15 +349,32 @@ namespace FNAF
             if (!isPowerOut)
             {
                 Console.ResetColor();
+                Program.utils.officeDisplay = @"
+            ___               ___
+            | | q   OFFICE  e | |
+            | | a    ----   d | |";
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-            }
-            Program.utils.officeDisplay = @"
+                if (Program.utils.isFreddyAtDoor)
+                {
+                   Program.utils.officeDisplay = @"
+            ___               ___
+            |v| q   OFFICE  e | |
+            | | a    ----   d | |";
+            } 
+                
+                else
+            {
+                Program.utils.officeDisplay = @"
             ___               ___
             | | q   OFFICE  e | |
-            | | a    ----   d | |";        }
+            | | a    ----   d | |";
+            }
+            }
+                
+                    }
         public void displayOfficeLCLOSED()
         {
             

@@ -4,7 +4,6 @@ using FNAF;
 // setAI after in game clock un update
 // put updateMovement in update
 
-
 namespace FNAF
 {
     class Foxy : Animatronic

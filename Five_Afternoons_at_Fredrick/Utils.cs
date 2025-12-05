@@ -42,6 +42,8 @@ namespace FNAF
         public string doorDisabledMessage = "Doors disabled";
         public string officeDisplay = "";
 
+        public bool isFreddyAtDoor = false;
+
 
         // sets the current night and current AI for that night
         public void setCurrNight(int night)

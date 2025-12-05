@@ -19,7 +19,7 @@ L to open dev stats
 
 /// TODO LIST ////
 
-- add le fred boy
+- have foxy drain power when he attacks
 
 - move to next night when you win
 - make a main menu
