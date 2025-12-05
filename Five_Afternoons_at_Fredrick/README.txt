@@ -1,4 +1,8 @@
 MY FINAL PROJECT IS "Five_Afternoons_at_Fredrick"
+-----OPTIMIZED FOR WINDOWS ONLY-----
+-> I'm not sure if it will break on other systems, but I sure haven't tried it
+
+
 
 A tasty fnaf ripoff built in the terminal.
 
@@ -14,7 +18,7 @@ Keep the animatronics outside the office and survive til 6AM, but keep an eye on
 power! A blackout could be the end of you.
 
 
-L to open dev stats
+L to open dev stats (if you're BORING and feel like cheating)
 
 
 /// TODO LIST ////
