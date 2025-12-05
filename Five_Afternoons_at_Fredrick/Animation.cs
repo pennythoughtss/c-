@@ -1,3 +1,4 @@
+using System.Data;
 using System.Text;
 using FNAF;
 
@@ -10,6 +11,7 @@ namespace FNAF
     class Animation()
     {
         Random random = new Random();
+        
 
         public void sixAM_YAY_1()
         {
@@ -20,6 +22,7 @@ namespace FNAF
             "- 6:00 AM -"];
             
             string spacer = "   ";
+            Console.ForegroundColor = ConsoleColor.Green;
 
             foreach (string step in anim)
             {
@@ -58,7 +61,7 @@ namespace FNAF
             string spacer = "    ";
             List<string> line7 = ["v v v v v", " v v v v v"];
             List<string> line8 = [" ^ ^ ^ ^", "  ^ ^ ^ ^"];
-
+            Console.ForegroundColor = ConsoleColor.Red;
             for(int i=0; i<line1.Count(); i++)
             {
                 Console.Clear();

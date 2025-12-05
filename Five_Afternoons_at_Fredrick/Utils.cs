@@ -6,6 +6,7 @@ namespace FNAF
 {
     // random assortment of data and stuff that I need to keep track of
     // keeps track of the data for the current night
+    
     class Utils
     {
         private int currentNight = 1;

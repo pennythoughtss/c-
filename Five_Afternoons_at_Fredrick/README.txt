@@ -19,14 +19,10 @@ L to open dev stats
 
 /// TODO LIST ////
 
+- add le fred boy
 
-- display foxy.getPhase() when he's on camera
-
-- add power to drain
 - move to next night when you win
 - make a main menu
-- optimize animatronic movement
-- add le foxy and le freddy
 - clean up the everything bro
 
 - add phone guy if you have time

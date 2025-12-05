@@ -1,3 +1,5 @@
+using System.Net;
+using System.Runtime.CompilerServices;
 using FNAF;
 
 namespace FNAF
@@ -9,14 +11,191 @@ namespace FNAF
         public bool isLightON_L = false;
         public bool isLightON_R = false;
         public bool doorsEnabled = true;
+        public bool cameraEnabled = true;
         public bool doorDisabledMessage = false;
         public bool BonnieAtDoor = false;
         public bool ChicaAtDoor = false;
 
         public bool isCameraUP = false;
         public bool isCameraSetDown = false;
+        public bool isPowerOut = false;
 
-        public int power = 100;
+        public int power = 999;
+        public int powerRounded = 100;
+        public int powerUseage = 0;
+        private int tempMil = 0;
+        private int tick = 0;
+
+        public void updatePower(int night)
+        {
+            tempMil ++;
+
+
+            if(tempMil == 100)
+            {
+                //passive power drain
+                if(night == 2 && tick == 6)
+                {
+                    power-= 1;
+                    tick = 0;
+                }
+                if(night == 3 && tick == 5)
+                {
+                    power-= 1;
+                    tick = 0;
+                }
+                if(night == 4 && tick == 4)
+                {
+                    power-= 1;
+                    tick = 0;
+                }
+                if(night > 4 && tick == 3)
+                {
+                    power-= 1;
+                    tick = 0;
+                }
+
+                tick ++;
+                power -= powerUseage;
+                powerRounded = power/10;
+                tempMil = 0;
+
+                
+            }
+            if(power <= 0)
+            {
+                powerOut();
+            }
+            
+            
+        }
+
+// gotta do it manual cus it's stinking updating every stinking second
+        public void setUseage()
+        {
+            if (isCameraUP)
+            {
+            if(isDoorClosed_L){
+               if (isDoorClosed_R)
+                {
+                    if (isLightON_R)
+                    {
+                        if(isLightON_L){powerUseage=5;}
+                        else{powerUseage=4;}
+                    }
+                    else{
+                        if(isLightON_L){powerUseage=4;}
+                        else{powerUseage=3;}
+                    }
+                }
+                else
+                {
+                    if (isLightON_R)
+                   {
+                        if(isLightON_L){powerUseage=4;}
+                        else{powerUseage=3;}
+                    }
+                    else
+                    {
+                        if(isLightON_L){powerUseage=3;}
+                        else{powerUseage=2;} 
+                    } 
+                } 
+            }
+            else{
+               if (isDoorClosed_R)
+                {
+                    if (isLightON_R)
+                    {
+                        if(isLightON_L){powerUseage=4;}
+                        else{powerUseage=3;}
+                    }
+                    else{
+                        if(isLightON_L){powerUseage=3;}
+                        else{powerUseage=2;}
+                    }
+                }
+                else
+                {
+                    if (isLightON_R)
+                   {
+                        if(isLightON_L){powerUseage=3;}
+                        else{powerUseage=2;}
+                    }
+                    else
+                    {
+                        if(isLightON_L){powerUseage=2;}
+                        else{powerUseage=1;} 
+                    } 
+                } 
+            }
+            } //
+            else //
+            {
+            if(isDoorClosed_L){
+               if (isDoorClosed_R)
+                {
+                    if (isLightON_R)
+                    {
+                        if(isLightON_L){powerUseage=4;}
+                        else{powerUseage=3;}
+                    }
+                    else{
+                        if(isLightON_L){powerUseage=3;}
+                        else{powerUseage=2;}
+                    }
+                }
+                else
+                {
+                    if (isLightON_R)
+                   {
+                        if(isLightON_L){powerUseage=3;}
+                        else{powerUseage=2;}
+                    }
+                    else
+                    {
+                        if(isLightON_L){powerUseage=2;}
+                        else{powerUseage=1;} 
+                    } 
+                } 
+            }
+            else{
+               if (isDoorClosed_R)
+                {
+                    if (isLightON_R)
+                    {
+                        if(isLightON_L){powerUseage=3;}
+                        else{powerUseage=2;}
+                    }
+                    else{
+                        if(isLightON_L){powerUseage=2;}
+                        else{powerUseage=1;}
+                    }
+                }
+                else
+                {
+                    if (isLightON_R)
+                   {
+                        if(isLightON_L){powerUseage=2;}
+                        else{powerUseage=1;}
+                    }
+                    else
+                    {
+                        if(isLightON_L){powerUseage=1;}
+                        else{powerUseage=0;} 
+                    } 
+                } 
+            }
+            }
+            
+            
+
+            
+        }
+        public void resetPower()
+        {
+            power = 999;
+        }
 
         public void ChangeLeftDoor(int status) //0 for open, 1 for closed
         {
@@ -167,24 +346,35 @@ namespace FNAF
 
         public void displayOfficeNormal()
         {
+            if (!isPowerOut)
+            {
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+            }
             Program.utils.officeDisplay = @"
             ___               ___
             | | q   OFFICE  e | |
             | | a    ----   d | |";        }
         public void displayOfficeLCLOSED()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___
             |\| q   OFFICE  e | |
             |\| a    ----   d | |";        }
         public void displayOfficeRCLOSED()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___
             | | q   OFFICE  e |\|
             | | a    ----   d |\|";        }
         public void displayOfficeCLOSED()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___
             |\| q   OFFICE  e |\|
@@ -192,30 +382,35 @@ namespace FNAF
 
         public void displayOfficeNormalLLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___
          _| | | q   OFFICE  e | |
             |_| a    ----   d | |";        }
         public void displayOfficeNormalRLight()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             | | q   OFFICE  e | | |_
             | | a    ----   d |_|";        }
         public void displayOfficeNormalLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| | | q   OFFICE  e | | |_
             |_| a    ----   d |_|";        }
         public void displayOfficeLCLOSEDRLight()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             |\| q   OFFICE  e | | |_
             |\| a    ----   d |_|";        }
         public void displayOfficeRCLOSEDLLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___
          _| | | q   OFFICE  e |\|
@@ -224,12 +419,14 @@ namespace FNAF
 ////////////////////////////
         public void displayOfficeLCLOSEDLLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  
          _| |\| q   OFFICE  e | | 
             |\| a    ----   d | |";        }
         public void displayOfficeRCLOSEDRLight()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             | | q   OFFICE  e |\| |_
@@ -237,12 +434,14 @@ namespace FNAF
 
         public void displayOfficeLCLOSEDBLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |\| q   OFFICE  e | | |_
             |\| a    ----   d |_|";        }
         public void displayOfficeRCLOSEDBLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| | | q   OFFICE  e |\| |_
@@ -250,12 +449,14 @@ namespace FNAF
 
         public void displayOfficeCLOSEDRLight()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             |\| q   OFFICE  e |\| |_
             |\| a    ----   d |\|";        }
         public void displayOfficeCLOSEDLLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  
          _| |\| q   OFFICE  e |\| 
@@ -263,6 +464,7 @@ namespace FNAF
 
         public void displayOfficeCLOSEDBLight()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |\| q   OFFICE  e |\| |_
@@ -274,42 +476,49 @@ namespace FNAF
 
         public void displayOfficeNormalLLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___
          _| |v| q   OFFICE  e | | 
             |_| a    ----   d | |";        }
         public void displayOfficeNormalRLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             | | q   OFFICE  e |v| |_
             | | a    ----   d |_|";        }
         public void displayOfficeNormalLightSPOOKR()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| | | q   OFFICE  e |v| |_
             |_| a    ----   d |_|";        }
         public void displayOfficeNormalLightSPOOKL()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |v| q   OFFICE  e | | |_
             |_| a    ----   d |_|";        }
         public void displayOfficeNormalLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |v| q   OFFICE  e |v| |_
             |_| a    ----   d |_|";        }
         public void displayOfficeLCLOSEDLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             |\| q   OFFICE  e |v| |_
             |\| a    ----   d |_|";        }
         public void displayOfficeRCLOSEDLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  
          _| |v| q   OFFICE  e |\| 
@@ -319,12 +528,14 @@ namespace FNAF
 
         public void displayOfficeLCLOSEDLLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  
          V| |\| q   OFFICE  e | | 
             |\| a    ----   d | |";        }
         public void displayOfficeRCLOSEDRLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             | | q   OFFICE  e |\| |V
@@ -332,6 +543,7 @@ namespace FNAF
 
         public void displayOfficeLCLOSEDBLightLSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          V| |\| q   OFFICE  e | | |_
@@ -339,30 +551,35 @@ namespace FNAF
 
         public void displayOfficeLCLOSEDBLightRSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |\| q   OFFICE  e |v| |_
             |\| a    ----   d |_|";        }
         public void displayOfficeLCLOSEDBLightBSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          V| |\| q   OFFICE  e |v| |_
             |\| a    ----   d |_|";        }
         public void displayOfficeRCLOSEDBLightLSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |v| q   OFFICE  e |\| |_
             |_| a    ----   d |\|";        }
         public void displayOfficeRCLOSEDBLightRSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| | | q   OFFICE  e |\| |V
             |_| a    ----   d |\|";        }
         public void displayOfficeRCLOSEDBLightBSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |v| q   OFFICE  e |\| |V
@@ -370,12 +587,14 @@ namespace FNAF
 
         public void displayOfficeCLOSEDRLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
             ___               ___  _
             |\| q   OFFICE  e |\| |V
             |\| a    ----   d |\|";        }
         public void displayOfficeCLOSEDLLightSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  
          V| |\| q   OFFICE  e |\| 
@@ -383,18 +602,21 @@ namespace FNAF
 
         public void displayOfficeCLOSEDBLightLSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          V| |\| q   OFFICE  e |\| |_
             |\| a    ----   d |\|";        }
         public void displayOfficeCLOSEDBLightRSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          _| |\| q   OFFICE  e |\| |V
             |\| a    ----   d |\|";        }
         public void displayOfficeCLOSEDBLightBSPOOK()
         {
+            
             Program.utils.officeDisplay = @"
          _  ___               ___  _
          V| |\| q   OFFICE  e |\| |V
@@ -404,6 +626,13 @@ namespace FNAF
         public void powerOut()
         {
             doorsEnabled = false;
+            cameraEnabled = false;
+            isDoorClosed_L = false;
+            isDoorClosed_R = false;
+            isLightON_L = false;
+            isLightON_R = false;
+            isCameraUP = false;
+            isPowerOut = true;
 
         }
     }

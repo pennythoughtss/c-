@@ -16,7 +16,7 @@ class Program()
     static int setDownTimer = 0;
     static int setDownStall = 0;
 
-    static int currentNight = 6;
+    static int currentNight = 6; //////////// change current night
     static bool quit = false;
     static bool playedAnim = false;
     static int menuTimer = 300;
@@ -66,13 +66,26 @@ class Program()
             }
 
             // for the love of everything just make sure to add the animatronic update functions
-            //bonnie.updateMovement(seconds);
-            //chica.updateMovement(seconds);
-            foxy.updateMovement(seconds);
+            if (!office.isPowerOut)
+            {
+                bonnie.updateMovement(seconds);
+                chica.updateMovement(seconds);
+                foxy.updateMovement(seconds);
+            }
+            else
+            {
+                bonnie.currentPOS = 0;
+                chica.currentPOS = 0;
+                foxy.currentPOS = 0;
+            }
+            
 
             office.setDoorDisplay();
             camera.updateAnimatronicPos("1A", bonnie.getCurrentPos(), chica.getCurrentPos(), foxy.getCurrentPos());
             camera.updateCameraData();
+            office.setUseage();
+            office.updatePower(currentNight);
+
 
         }
  
@@ -98,9 +111,10 @@ class Program()
             {
                 //temporary animatronic position display
                 Console.Clear();
-                Console.WriteLine($"Power: {office.power}, {utils.time[utils.currTime]}:00 AM, {miliseconds}");
+                Console.WriteLine($"Power: {office.powerRounded}%, Useage: {office.powerUseage}, {utils.time[utils.currTime]}:00 AM");
                 if (toggleDev)
                 {
+                    Console.WriteLine(miliseconds);
                     Console.WriteLine($"Bonnie: {bonnie.getCurrentPos()}, AI:{bonnie.AI}, {bonnie.movementCheck}");
                     Console.WriteLine($"Chica: {chica.getCurrentPos()}, AI:{chica.AI}, {chica.movementCheck}"); 
                     Console.WriteLine($"Foxy: {foxy.getCurrentPos()}, AI:{foxy.AI}, {foxy.movementCheck}");                }
@@ -118,7 +132,8 @@ class Program()
                 }
                 else
                 { 
-                    office.doorsEnabled = true;
+                    if(office.cameraEnabled){office.doorsEnabled = true;}
+                    
                     if (setDownTimer > 0)
                     {
                         setDownTimer--;
@@ -157,7 +172,7 @@ class Program()
                         Console.WriteLine("Your body has been stuffed in an animatronic suit.");
                         dt_last = dt_current;
                     }
-                    else{quit=true;}
+                    else{Console.ResetColor();quit=true;}
                 }
             }
         }
@@ -200,6 +215,7 @@ class Program()
 
         // TODO set the next night when you win I guess
         utils.setCurrNight(currentNight);
+        //office.powerOut();
 
         //bonnie.currentPOS = 5;
         //office.ChangeLeftDoor(1);
@@ -213,13 +229,16 @@ class Program()
                     ConsoleKey key = Console.ReadKey().Key;
                     if (key == ConsoleKey.C)
                     {
-                       if (office.isCameraUP)
+                        if (office.cameraEnabled)
                         {
-                            office.isCameraUP = false;
-                        }
-                        else
-                        {
-                            office.isCameraUP = true;
+                            if (office.isCameraUP)
+                            {
+                                office.isCameraUP = false;
+                            }
+                            else
+                            {
+                                office.isCameraUP = true;
+                            }
                         }
                     }
                     if (key == ConsoleKey.A)

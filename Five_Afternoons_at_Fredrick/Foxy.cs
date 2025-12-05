@@ -99,6 +99,8 @@ namespace FNAF
                 if (Program.office.isDoorClosed_L)
                 {
                     currentPOS=0;
+                    tempMil=0;
+                    tempMil2=0;
                 }
                 else
                 {
