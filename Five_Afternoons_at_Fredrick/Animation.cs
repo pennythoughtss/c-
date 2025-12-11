@@ -120,6 +120,25 @@ namespace FNAF
             return "[" + randString.ToString() + "]";
             
         }
+
+        public void CurrentNightDisplay(int n)
+        {
+            List<string> anim = [$" //  NIGHT {n}  \\\\",$" /   NIGHT {n}   \\",
+            $"     NIGHT {n}",$"   / NIGHT {n} \\",$"  // NIGHT {n} \\\\"];
+
+            string spacer = "    ";
+            
+            for(int i = 0; i < 4; i++)
+            {
+                foreach (string step in anim)
+            {
+                Utils.ClearCurrentConsoleLine();
+                Console.Write(spacer + step);
+                Thread.Sleep(200);
+            }
+            }
+            
+        }
         
     }
 }

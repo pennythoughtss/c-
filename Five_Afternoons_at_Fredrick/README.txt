@@ -25,8 +25,6 @@ L to open dev stats (if you're BORING and feel like cheating)
 
 - have foxy drain power when he attacks
 
-- move to next night when you win
-- make a main menu
 - clean up the everything bro
 
 - add phone guy if you have time

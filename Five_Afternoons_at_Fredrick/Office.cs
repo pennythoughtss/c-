@@ -26,6 +26,29 @@ namespace FNAF
         private int tempMil = 0;
         private int tick = 0;
 
+        public void resetOffice()
+        {
+            isDoorClosed_L = false;
+            isDoorClosed_R = false;
+            isLightON_L = false;
+            isLightON_R = false;
+            doorsEnabled = true;
+            cameraEnabled = true;
+            doorDisabledMessage = false;
+            BonnieAtDoor = false;
+            ChicaAtDoor = false;
+
+            isCameraUP = false;
+            isCameraSetDown = false;
+            isPowerOut = false;
+
+            power = 99;
+            powerRounded = 100;
+            powerUseage = 0;
+            tempMil = 0;
+            tick = 0;
+        }
+
         public void updatePower(int night)
         {
             tempMil ++;

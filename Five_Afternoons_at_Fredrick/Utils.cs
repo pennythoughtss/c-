@@ -41,10 +41,102 @@ namespace FNAF
 
         public string doorDisabledMessage = "Doors disabled";
         public string officeDisplay = "";
+        private string menuDisp = "";
 
         public bool isFreddyAtDoor = false;
 
+        public void resetUtil()
+        {
+            currTime = 0;
+            death = false;
+            victory = false;
+            isFreddyAtDoor = false;
+            
+        }
 
+        public void displayMenu(int menuSelect, int n)
+        {
+            string game = "New Game";
+
+            if (n==1)
+            {
+                game = "New Game";
+            }
+            else
+            {
+                game = "Continue";
+            }
+
+
+            switch (menuSelect)
+            {
+                case 1:
+                    {
+                        menuDisp = $"  - {game} -\n    Options\n    Quit";
+                        break;
+                    }
+                case 2:
+                    {
+                        menuDisp = $"    {game}\n  - Options -\n    Quit";
+                        break;
+                    }
+                case 3:
+                    {
+                        menuDisp = $"    {game}\n    Options\n  - Quit -";
+                        break;
+                    }
+                default:
+                    {
+                        menuDisp = $"    {game}\n    Options\n    Quit";
+                        break;
+                    }
+            }
+
+            Console.Clear();
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine(" - FIVE NIGHTS AT FREDDY'S -");
+            Console.WriteLine("       (the rip off)\n");
+            Console.WriteLine(menuDisp);
+        }
+
+       public void displayOptionsMenu(int menuSelect)
+        {
+            switch (menuSelect)
+            {
+                case 1:
+                    {
+                        menuDisp = "  - Set Night -\n    Back";
+                        break;
+                    }
+                case 2:
+                    {
+                        menuDisp = "    Set Night\n  - Back -";
+                        break;
+                    }
+                default:
+                    {
+                        menuDisp = "    Set Night\n    Back";
+                        break;
+                    }
+            }
+
+            Console.Clear();
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("       -  Options  -\n");
+            Console.WriteLine(menuDisp);
+        }
+
+        public void displayOptionsMenu2(int night)
+        {
+            menuDisp = $"     Current Night : {night}↕";
+
+            Console.Clear();
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("       -  Options  -\n");
+            Console.WriteLine(menuDisp);
+        }
+       
+       
         // sets the current night and current AI for that night
         public void setCurrNight(int night)
         {

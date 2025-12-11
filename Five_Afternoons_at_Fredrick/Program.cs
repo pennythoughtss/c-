@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using FNAF;
 
 // main loop and timer are run from here, oooh boy its gonna get messy in here
@@ -16,10 +17,20 @@ class Program()
     static int setDownTimer = 0;
     static int setDownStall = 0;
 
-    static int currentNight = 2; //////////// change current night
-    static bool quit = false;
+    static int currentNight = 1; //////////// change current night
+    static bool quit = true;
+    static bool game = true;
     static bool playedAnim = false;
     static int menuTimer = 300;
+    static bool exitingTheGame = false;
+    static bool randomStat =false;
+
+    static int menuSelect = 1;
+    static bool options = false;
+    static bool options2 = false;
+    static int optionsSelect = 1;
+    //current night display when you start the night
+    static bool hasDisplayedNight = false;
 
     public static Utils utils = new Utils();
     public static Office office = new Office();
@@ -33,12 +44,44 @@ class Program()
     static Foxy foxy = new Foxy();
     static Freddy freddy = new Freddy();
 
+    static void resetLogic()
+    {
+        tick = 0;
+        dt_current = 1;
+        dt_last = 0;
+        toggleDev = false;
+        seconds = 0;
+        miliseconds = 0;
+        setDownTimer = 0;
+        setDownStall = 0;
+        playedAnim = false;
+        menuTimer = 300;
+        exitingTheGame = false;
+        randomStat =false;
+
+        menuSelect = 1;
+        freddy.canAttack = false;
+
+        freddy.currentPOS = 0;
+        bonnie.currentPOS = 0;
+        chica.currentPOS = 0;
+        foxy.currentPOS = 0;
+
+        options = false;
+        options2 = false;
+        optionsSelect = 1;
+
+        hasDisplayedNight = false;
+    
+    }
+
+
 
 //for the update section because I keep losing it
 ////////////////////////////////////////////////////////////////////////////////////// 
     static void UpdateLogic()
     {   
-        if (utils.death != true && utils.victory != true)
+        if (utils.death != true && utils.victory != true && !exitingTheGame)
         {
             //IMPORTANT DO NOT REMOVE// MAIN CLOCK FOR IN GAME TIME
             utils.setTime(miliseconds);
@@ -119,13 +162,13 @@ class Program()
                 tick = 0;
             } 
 
-    if (utils.death != true && utils.victory != true)
+    if (utils.death != true && utils.victory != true && !exitingTheGame && hasDisplayedNight)
         {
         if (dt_current > dt_last)
             {
                 //temporary animatronic position display
                 Console.Clear();
-                Console.WriteLine($"Power: {office.powerRounded}%, Useage: {office.powerUseage}, {utils.time[utils.currTime]}:00 AM");
+                Console.WriteLine($"Power: {office.powerRounded}%, Useage: {office.powerUseage}, {utils.time[utils.currTime]}:00 , Current Night: {currentNight}");
                 if (toggleDev)
                 {
                     Console.WriteLine(miliseconds);
@@ -192,7 +235,7 @@ class Program()
                 }
             }
         }
-        if (utils.victory == true)
+        else if (utils.victory == true)
         {
 
             if (dt_current > dt_last)
@@ -213,9 +256,52 @@ class Program()
                     Console.WriteLine($"Congradulations! You survived night {currentNight}");
                     dt_last = dt_current;
                     }
-                    else{quit=true;}
+                    else
+                    {
+                        Console.ResetColor();
+                        if (currentNight < 6)
+                        {
+                            resetLogic();
+                            office.resetOffice();
+                            utils.resetUtil();
+                            currentNight++;
+                            utils.setCurrNight(currentNight);
+                        }
+                        else{quit=true;}
+                        
+                    }
                 }
             }
+        }
+
+        else if (exitingTheGame == true)
+        {
+
+            if (dt_current > dt_last)
+            {
+                if (menuTimer > 250)
+                {
+                menuTimer--;
+                Console.Clear();
+                Console.WriteLine("exiting the game...");
+                dt_last = dt_current;
+                }
+                else if (menuTimer > 230)
+                {
+                    menuTimer--;
+                    Console.Clear();
+                    dt_last = dt_current;
+                }
+                else{Console.Clear();quit=true;}
+            }
+        }
+        else if (!hasDisplayedNight)
+        {
+            Console.Clear();
+            Console.WriteLine();
+            animation.CurrentNightDisplay(currentNight);
+            hasDisplayedNight = true;
+            Console.Clear();
         }
     }
     
@@ -230,7 +316,7 @@ class Program()
         Console.CursorVisible = false;
 
         // TODO set the next night when you win I guess
-        utils.setCurrNight(currentNight);
+        
         //office.powerOut();
 
         //bonnie.currentPOS = 5;
@@ -240,7 +326,10 @@ class Program()
 //event listeners for key control stuff
         Task.Factory.StartNew(() =>
             {
-                while (quit != true)
+                while (game)
+                {
+                    
+                if (!quit)
                 {
                     ConsoleKey key = Console.ReadKey().Key;
                     if (key == ConsoleKey.C)
@@ -326,29 +415,137 @@ class Program()
 
                     if (key == ConsoleKey.Escape)
                     {
-                        quit = true;
+                        exitingTheGame = true;
                     }
                     
 
+                }
+                    else
+                    {
+                        randomStat=false;
+                    }
                 }
                 
                 
             });
 
 ////////////////// MAIN LOOP////////////////////////////////////////////////////////////
-        while (quit != true)
+        while (game)
         {
-            //does code stuff, add update funtions
+            //main menu
+            if (quit)
+            {
+                if (!options)
+                {
+                    Console.Clear();
+                    exitingTheGame = false;
+                    utils.displayMenu(menuSelect, currentNight);
+                    ConsoleKey thisKey = Console.ReadKey().Key;
+                    if (thisKey == ConsoleKey.Enter)
+                    {
+                        switch (menuSelect)
+                        {
+                            case 1:
+                                {
+                                    quit=false;
+                                    resetLogic();
+                                    office.resetOffice();
+                                    utils.resetUtil();
+                                    utils.setCurrNight(currentNight);
 
-            UpdateLogic();
-            UpdateVisual();
-            Thread.Sleep(1);
+                                    break;
+                                }
+                            case 2: {options=true;break;}
+                            case 3: {game=false;break;}
+                        }
+                    
+                    }
+                    if (thisKey == ConsoleKey.S || thisKey == ConsoleKey.DownArrow)
+                    {
+                        if (menuSelect < 3){menuSelect++;}
+                        else{menuSelect = 1;}
+                    }
+                    if (thisKey == ConsoleKey.W || thisKey == ConsoleKey.UpArrow)
+                    {
+                        if (menuSelect > 1){menuSelect--;}
+                        else{menuSelect = 3;}
+                    }
+                    if (thisKey == ConsoleKey.Escape)
+                    {
+                        game = false;
+                    }
+                }
+                else if (options && !options2)
+                {
+                    Console.Clear();
+                    exitingTheGame = false;
+                    utils.displayOptionsMenu(optionsSelect);
+                    ConsoleKey thisKey = Console.ReadKey().Key;
+                        if (thisKey == ConsoleKey.Escape){options=false;}
+                        if (thisKey == ConsoleKey.S || thisKey == ConsoleKey.DownArrow)
+                        {
+                            if (optionsSelect < 2 && optionsSelect !=5){optionsSelect++;}
+                            else{optionsSelect = 1;}
+                        }
+                        if (thisKey == ConsoleKey.W || thisKey == ConsoleKey.UpArrow)
+                        {
+                            if (optionsSelect > 1 ){optionsSelect--;}
+                            else{optionsSelect = 2;}
+                        }
+                        if (thisKey == ConsoleKey.Enter)
+                        {
+                            switch (optionsSelect)
+                            {
+                                case 1:
+                                {
+                                    options2 = true;
+                                    break;
+                                }
+                                case 2: {options=false;break;}
+                        }
+                    }
+                    
+                }
+                    else if (options2)
+                    {
+                        Console.Clear();
+                        exitingTheGame = false;
+                        utils.displayOptionsMenu2(currentNight);
+                        ConsoleKey thisKey = Console.ReadKey().Key;
+                        if (thisKey == ConsoleKey.Enter || thisKey == ConsoleKey.Escape)
+                        {
+                            options2 = false;
+                        }
+                        if (thisKey == ConsoleKey.W || thisKey == ConsoleKey.UpArrow)
+                        {
+                            if(currentNight < 6){currentNight++;}
+                            else if (currentNight == 6){currentNight=20;}
+                            else{currentNight=1;}
+                        }
+                        if (thisKey == ConsoleKey.S || thisKey == ConsoleKey.DownArrow)
+                        {
+                            if(currentNight > 1){currentNight--;}
+                            else if (currentNight == 1){currentNight=20;}
+                            else{currentNight=6;}
+                        }
+                    }
+                    Thread.Sleep(1);
+                }
+                
+            
+            else if (!quit)
+            {
+                //does code stuff, add update funtions
+                UpdateLogic();
+                UpdateVisual();
+                Thread.Sleep(1);
+            }
         }
         
-
-        //aTimer.Dispose();
-        Thread.Sleep(500);
-        Console.WriteLine("\n--End game");
+        
+        
+        
+        Console.WriteLine("End game");
         Thread.Sleep(1000);
     }
     
