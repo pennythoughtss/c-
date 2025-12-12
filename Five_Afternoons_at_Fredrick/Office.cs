@@ -42,7 +42,7 @@ namespace FNAF
             isCameraSetDown = false;
             isPowerOut = false;
 
-            power = 99;
+            power = 999;
             powerRounded = 100;
             powerUseage = 0;
             tempMil = 0;
@@ -380,7 +380,7 @@ namespace FNAF
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                if (Program.utils.isFreddyAtDoor)
+                if (Program.utils.isFreddyAtDoor && !Program.freddy.canAttack)
                 {
                    Program.utils.officeDisplay = @"
             ___               ___

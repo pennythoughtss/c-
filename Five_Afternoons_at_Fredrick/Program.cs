@@ -42,7 +42,7 @@ class Program()
     static Bonnie bonnie = new Bonnie();
     static Chica chica = new Chica();
     static Foxy foxy = new Foxy();
-    static Freddy freddy = new Freddy();
+    public static Freddy freddy = new Freddy();
 
     static void resetLogic()
     {
@@ -72,6 +72,7 @@ class Program()
         optionsSelect = 1;
 
         hasDisplayedNight = false;
+        foxy.currentAttack = 0;
     
     }
 
@@ -123,8 +124,8 @@ class Program()
             // for the love of everything just make sure to add the animatronic update functions
             if (!office.isPowerOut)
             {
-                bonnie.updateMovement(seconds);
-                chica.updateMovement(seconds);
+                //bonnie.updateMovement(seconds);
+                //chica.updateMovement(seconds);
                 foxy.updateMovement(seconds);
             }
             else
@@ -135,7 +136,7 @@ class Program()
                 freddy.currentPOS = 7;
             }
             
-            freddy.updateMovement(seconds);
+            //freddy.updateMovement(seconds);
 
             office.setDoorDisplay();
             camera.updateAnimatronicPos(freddy.getCurrentPos(), bonnie.getCurrentPos(), chica.getCurrentPos(), foxy.getCurrentPos());

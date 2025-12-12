@@ -23,6 +23,8 @@ namespace FNAF
         private int tempMil2 = 0;
         public int movementCheck = 0;
 
+        public int currentAttack = 0;
+
         private bool triggerRun = false;
         
         public string getStage()
@@ -100,6 +102,11 @@ namespace FNAF
                     currentPOS=0;
                     tempMil=0;
                     tempMil2=0;
+                    currentAttack ++;
+                    if (currentAttack == 1){Program.office.power -= 10;}
+                    else if (currentAttack == 2){Program.office.power -= 60;}
+                    else if (currentAttack == 3){Program.office.power -= 110;}
+                    else {Program.office.power -= 160;}
                 }
                 else
                 {

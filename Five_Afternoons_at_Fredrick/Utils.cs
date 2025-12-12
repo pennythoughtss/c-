@@ -128,7 +128,7 @@ namespace FNAF
 
         public void displayOptionsMenu2(int night)
         {
-            menuDisp = $"     Current Night : {night}↕";
+            menuDisp = $"     Current Night : {night} ±";
 
             Console.Clear();
             Console.WriteLine("-----------------------------");
