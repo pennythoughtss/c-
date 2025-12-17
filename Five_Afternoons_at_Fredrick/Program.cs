@@ -124,8 +124,8 @@ class Program()
             // for the love of everything just make sure to add the animatronic update functions
             if (!office.isPowerOut)
             {
-                //bonnie.updateMovement(seconds);
-                //chica.updateMovement(seconds);
+                bonnie.updateMovement(seconds);
+                chica.updateMovement(seconds);
                 foxy.updateMovement(seconds);
             }
             else
@@ -136,7 +136,7 @@ class Program()
                 freddy.currentPOS = 7;
             }
             
-            //freddy.updateMovement(seconds);
+            freddy.updateMovement(seconds);
 
             office.setDoorDisplay();
             camera.updateAnimatronicPos(freddy.getCurrentPos(), bonnie.getCurrentPos(), chica.getCurrentPos(), foxy.getCurrentPos());
@@ -525,7 +525,7 @@ class Program()
                         }
                         if (thisKey == ConsoleKey.S || thisKey == ConsoleKey.DownArrow)
                         {
-                            if(currentNight > 1){currentNight--;}
+                            if(currentNight > 1 && currentNight!=20){currentNight--;}
                             else if (currentNight == 1){currentNight=20;}
                             else{currentNight=6;}
                         }
